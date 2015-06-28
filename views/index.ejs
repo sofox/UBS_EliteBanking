@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app='ebApp'>
+<% include header %>
+<body>
+    <% include navbar %>
+ 
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <% include login %>
+        </div>
+    </div>
+ 
+    <div class="container">
+        <hr>
+ 
+        <% include footer %>
+    </div>
+    <!-- /container -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#home').addClass("active");
+        });
+    </script>
+</body>
+</html>

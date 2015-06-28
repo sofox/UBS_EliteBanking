@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ebApp">
+<% include header %>
+<script type="text/javascript" src="/js/portfolio.js"></script>
+<body>
+    <% include navbar %>
+    <div ng-controller="portCtrl">
+	    <div class="jumbotron">
+	        <div class="container">
+	            <div class="page-header">
+		            <h1>
+		                Owned Shares
+		            </h1>
+		        </div>
+		        <div class="panel panel-default">
+		            <div class="panel-heading">
+			            <span class="dropdown" dropdown on-toggle="toggled(open)">
+							    	<a href class="dropdown-toggle" dropdown-toggle>
+							    		Select Portfolio: {{currentPort()}}<span class="caret"></span>
+							    	</a>
+							    	<ul class="dropdown-menu">
+							    		<li ng-repeat="choice in ports">
+							        	<a href ng-click="selectPort(choice)">{{choice}}</a>
+							        	</li>
+							      	</ul>
+							    </span>
+		        		</div>
+		        		<div class="panel-body">
+			        		<table class="table">
+				        		<thead>
+								      <tr>
+								        <th>Name</th>
+								        <th>Quantity</th>
+								        <th>Last Bought On</th>
+								        <th>Price Changes Today/$</th>
+								        <th>Cost</th>
+								        <th>Current Value</th>
+								      </tr>
+								    </thead>
+								    <tbody>
+									    <tr ng-repeat='trans in portfolio()'
+									    		ng-if='trans.date.substring(5, 7) == currMonth || currMonth == 12'>
+									    	<td ng-click="goto()">{{trans[0]}}</td>
+				        				<td>{{trans[1]}}</td>
+				        				<td>{{trans[2]}}</td>
+				        				<td>{{trans[3]}}</td>
+				        				<td>{{trans[4]}}</td>
+				        				<td>{{trans[5]}}</td>
+				        			</tr>
+								    </tbody>
+			        		</table>
+		        		</div>
+		        </div>
+	        </div>
+	    </div>
+ 	</div>
+ 	
+    <div class="container">
+        <hr>
+        <% include footer %>
+    </div>
+    </body>
+</html>

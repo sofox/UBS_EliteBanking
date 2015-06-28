@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ebApp">
+<% include header %>
+<script type="text/javascript" src="/js/transfers.js"></script>
+<body>
+    <% include navbar %>
+    <div ng-controller="transferCtrl">
+	    <div class="jumbotron">
+	        <div class="container">
+	            <div class="page-header">
+		            <h1>
+		                Transfers
+		            </h1>
+		        </div>
+		        <div class="panel panel-default">
+		            <div class="panel-heading">
+			            <span class="dropdown" dropdown on-toggle="toggled(open)">
+							    	<a href class="dropdown-toggle" dropdown-toggle>
+							    		Select Month: {{currentMonth()}}<span class="caret"></span>
+							    	</a>
+							    	<ul class="dropdown-menu">
+							    		<li ng-repeat="choice in months">
+							        	<a href ng-click="selectMonth(choice)">{{choice}}</a>
+							        	</li>
+							      	</ul>
+							    </span>
+							    |
+							    <span class="dropdown" dropdown>
+							    	<a href class="dropdown-toggle" dropdown-toggle>
+							    		{{inoutText[inout]}}<span class="caret"></span>
+							    	</a>
+							    	<ul class="dropdown-menu">
+							    		<li ng-repeat="choice in inoutText">
+							        	<a href ng-click="selectInOut(choice)">{{choice}}</a>
+							        	</li>
+							      	</ul>
+							    </span>
+		        		</div>
+		        		<div class="panel-body" ng-if="inout==0">
+			        		<table class="table">
+				        		<thead>
+								      <tr>
+								        <th>To</th>
+								        <th>Amount/$</th>
+								        <th>Date</th>
+								      </tr>
+								    </thead>
+								    <tbody>
+									    <tr ng-repeat='trans in outgoing' 
+									    		ng-if='trans.date.substring(5, 7) == currMonth || currMonth == 12'>
+									    	<td>{{getName(trans.to)}}</td>
+				        				<td>{{trans.amount}}</td>
+				        				<td>{{trans.date.substring(0,10)}}</td>
+				        			</tr>
+								    </tbody>
+			        		</table>
+		        		</div>
+		        		
+		        		<div class="panel-body" ng-if="inout==1">
+			        		<table class="table">
+				        		<thead>
+								      <tr>
+								        <th>From</th>
+								        <th>Amount/$</th>
+								        <th>Date</th>
+								      </tr>
+								    </thead>
+								    <tbody>
+									    <tr ng-repeat='trans in incoming' 
+									    		ng-if='trans.date.substring(5, 7) == currMonth || currMonth == 12'>
+									    	<td>{{getName(trans.from)}}</td>
+				        				<td>{{trans.amount}}</td>
+				        				<td>{{trans.date.substring(0,10)}}</td>
+				        			</tr>
+								    </tbody>
+			        		</table>
+		        		</div>
+		        </div>
+	        </div>
+	    </div>
+ 	</div>
+ 	
+    <div class="container">
+        <hr>
+        <% include footer %>
+    </div>
+    
+    <script type="text/javascript">
+       $(document).ready(function() {
+           $('#transactions').addClass("active");
+       });
+   </script></body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ebApp">
+<% include header %>
+<script type="text/javascript" src="/js/recommend.js"></script>
+<body>
+    <% include navbar %>
+    <div ng-controller="recommCtrl">
+	    <div class="jumbotron">
+	        <div class="container">
+	            <div class="page-header">
+		            <h1>
+		                Investment Environment
+		            </h1>
+		        </div>
+		        <div class="panel panel-default">
+		            <div class="panel-heading">
+			            What's going on right now
+		        		</div>
+		        		<div class="panel-body">
+			        		<div class="col-md-6">
+			        			<h3 align="center">Biggest Losers</h3>
+				        		<table class="table">
+					        		<thead>
+									      <tr>
+									        <th>Name</th>
+									        <th>Price/$</th>
+									        <th>Change since last day</th>
+									      </tr>
+									    </thead>
+									    <tbody>
+										    <tr ng-repeat='trans in losers'>
+										    	<a href='#'><td>{{trans[0]}}</td></a>
+					        				<td>{{trans[1]}}</td>
+					        				<td>{{trans[2]}}</td>
+					        			</tr>
+									    </tbody>
+				        		</table>
+			        		</div>
+			        		
+			        		<div class="col-md-6">
+			        			<h3 align="center">Biggest Gainers</h3>
+				        		<table class="table">
+					        		<thead>
+									      <tr>
+									        <th>Name</th>
+									        <th>Price/$</th>
+									        <th>Change since last day</th>
+									      </tr>
+									    </thead>
+									    <tbody>
+										    <tr ng-repeat='trans in gainers'>
+										    	<a href='#'><td>{{trans[0]}}</td></a>
+					        				<td>{{trans[1]}}</td>
+					        				<td>+{{trans[2]}}</td>
+					        			</tr>
+									    </tbody>
+				        		</table>
+			        		</div>
+			        		
+			        		<div class="col-md-6 col-md-offset-3">
+			        			<h3 align="center">Similar to your investments</h3>
+				        		<table class="table">
+					        		<thead>
+									      <tr>
+									        <th>Name</th>
+									        <th>Price/$</th>
+									        <th>Change since last day</th>
+									      </tr>
+									    </thead>
+									    <tbody>
+										    <tr ng-repeat='trans in recomm'>
+										    	<a href='#'><td>{{trans[0]}}</td></a>
+					        				<td>{{trans[1]}}</td>
+					        				<td>{{trans[2]}}</td>
+					        			</tr>
+									    </tbody>
+				        		</table>
+			        		</div>
+		        		</div>
+		        				        
+		        		<div class="panel-footer">
+		        			
+		        		</div>
+		        </div>
+	        </div>
+	    </div>
+ 	</div>
+ 	
+    <div class="container">
+        <hr>
+        <% include footer %>
+    </div>
+</body>
+</html>

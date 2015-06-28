@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ebApp">
+<% include header %>
+<!-- <script language="javascript" type="text/javascript" src="../stylesheets/morris.css"></script> -->
+<script language="javascript" type="text/javascript" src="../js/plugins/morris/morris.js"></script>
+<script language="javascript" type="text/javascript" src="../js/plugins/morris/raphael.min.js"></script>
+<script language="javascript" type="text/javascript" src="../js/plugins/morris/morris-data.js"></script>
+<script language="javascript" type="text/javascript" src="../js/overview.js"></script>
+<link href="stylesheets/sb-admin/sb-admin.css" rel="stylesheet">
+<link href="../stylesheets/morris.css" rel="stylesheet">
+<body>
+    <% include navbar %>
+    <div ng-controller="overCtrl">
+	    <div class="jumbotron">
+	        <div class="container">
+	            <div class="page-header">
+		            <h1>
+		                Dashboard
+		            </h1>
+		        </div>
+		        <div class="panel panel-default">
+		            <div class="panel-heading">
+		            	At a glance
+		            </div>
+		            <div class="panel-body">
+                  <div class="col-xs-8 text-center">
+							       <h3>Holdings Breakdown</h3>
+							      <div id="pie-chart"  style="min-height: 300px;"></div>
+							    </div>
+							    <div class="col-xs-4" ng-click="gotoOwned()">
+							    	<table class="table">
+					        		<thead>
+									      <tr>
+									        <th>Name</th>
+									        <th>Quantity</th>
+									      </tr>
+									    </thead>
+									    <tbody>
+										    <tr ng-repeat='trans in portfolio()'>
+										    	<td>{{trans[0]}}</td>
+					        				<td>{{trans[1]}}</td>
+					        			</tr>
+									    </tbody>
+				        		</table>
+							    </div>
+							    
+							    <div class="col-md-6">
+			        			<h3 align="center" ng-click="gotoRecomm()">Biggest Losers</h3>
+				        		<table class="table">
+					        		<thead>
+									      <tr>
+									        <th>Name</th>
+									        <th>Price/$</th>
+									        <th>Change since last day</th>
+									      </tr>
+									    </thead>
+									    <tbody>
+										    <tr ng-repeat='trans in losers'>
+										    	<a href='#'><td>{{trans[0]}}</td></a>
+					        				<td>{{trans[1]}}</td>
+					        				<td>{{trans[2]}}</td>
+					        			</tr>
+									    </tbody>
+				        		</table>
+			        		</div>
+			        		
+			        		<div class="col-md-6">
+			        			<h3 align="center" ng-click="gotoRecomm()">Biggest Gainers</h3>
+				        		<table class="table">
+					        		<thead>
+									      <tr>
+									        <th>Name</th>
+									        <th>Price/$</th>
+									        <th>Change since last day</th>
+									      </tr>
+									    </thead>
+									    <tbody>
+										    <tr ng-repeat='trans in gainers'>
+										    	<a href='#'><td>{{trans[0]}}</td></a>
+					        				<td>{{trans[1]}}</td>
+					        				<td>+{{trans[2]}}</td>
+					        			</tr>
+									    </tbody>
+				        		</table>
+			        		</div>
+							    
+                  <div class="col-xs-12 text-center">
+							      <h3>Price Changes Today</h3>
+							      <div id="area-chart" style="min-height: 300px;"></div>
+							    </div>
+							    
+							    <div class="col-xs-12 text-center">
+							       <h3>Price Changes Since Last Year</h3>
+							      <div id="line-chart" style="min-height: 300px;"></div>
+							    </div>
+									
+								</div>
+		        </div>
+	        </div>
+	    </div>
+ 	</div>
+ 	
+    <div class="container">
+        <hr>
+        <% include footer %>
+    </div>
+   <script>
+   var data = [
+               { y: '0200', a: 5.0, b: 9.0, c: 22.3},
+               { y: '0400', a: 6.5,  b: 7.5, c: 22.3},
+               { y: '0600', a: 5.0,  b: 5.0, c: 23.8},
+               { y: '0800', a: 7.5,  b: 6.0, c: 23.7},
+               { y: '1000', a: 8.0,  b: 6.5, c: 22.3},
+               { y: '1200', a: 9.0,  b: 7.0, c: 23.9},
+               { y: '1400', a: 10.0, b: 7.5, c: 24.3},
+               { y: '1600', a: 11.5, b: 7.5, c: 25.3},
+               { y: '1800', a: 12.0, b: 8.5, c: 26.3},
+               { y: '2000', a: 14.5, b: 8.5, c: 23.8},
+               { y: '2200', a: 16.0, b: 9.5, c: 25.3}
+             ],
+             config = {
+               data: data,
+               xkey: 'y',
+               ykeys: ['c', 'b', 'a'],
+               labels: ['SingTel', 'Noble', 'DBS'],
+               fillOpacity: 0.6,
+               hideHover: 'auto',
+               behaveLikeLine: true,
+               resize: true,
+               pointFillColors:['#ffffff'],
+               pointStrokeColors: ['black'],
+               lineColors:['#ee82ee','#ffa500', '#cd853f']
+           };
+         config.element = 'area-chart';
+         Morris.Area(config);
+         config.element = 'line-chart';
+         Morris.Line(config);
+         Morris.Donut({
+        	 colors:['#cd5c5c','#8b4513', '#a0522d', '#cd853f', '#deb887', '#f5f5dc'],
+        	  element: 'pie-chart',
+        	  data: [
+        	    {label: "SingTel", value: 10},
+        	    {label: "Keppel Corporation Limited", value: 15},
+        	    {label: "Elite Industries", value: 15},
+        	    {label: "Noble", value: 5},
+        	    {label: "DBS", value: 50},
+        	    {label: "OCBC", value: 20}
+        	  ]
+        	});
+         </script>
+   </body>
+</html>

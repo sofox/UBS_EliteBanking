@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ebApp">
+<% include header %>
+<body>
+    <% include navbar %>
+    <div ng-controller="debugCtrl">
+	    <div class="jumbotron">
+	        <div class="container">
+	            <div class="page-header">
+		            <h1>
+		                Page for development and debugging purposes
+		            </h1>
+		        </div>
+		        <div class="panel panel-default">
+		            <div class="panel-heading">
+			            Buttons
+		        		</div>
+		        		<div class="panel-body">
+		        			<a href ng-click="createUser()">Create User</a>
+		        			<br>
+		        			<a href ng-click="getTrans()">Get transactions</a>
+		        			<br>
+		        			<a href ng-click="createDummyData()">Create Dummy Data</a>
+		        		</div>
+		        </div>
+	        </div>
+	    </div>
+ 	</div>
+ 	
+    <div class="container">
+        <hr>
+        <% include footer %>
+    </div>
+    
+    <script type="text/javascript">
+       $(document).ready(function() {
+           $('#development').addClass("active");
+       });
+   </script>
+   <!-- Bootstrap core JavaScript
+   ================================================== -->
+   <!-- Placed at the end of the document so the pages load faster -->
+   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   <script src="https://code.jquery.com/jquery.js"></script>
+   <!-- Latest compiled and minified JavaScript -->
+    <script
+        src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='ebApp'>
+<% include header %>
+<body>
+    <% include navbar %>
+    <div class="jumbotron">
+        <div class="container">
+            <div class="page-header">
+            <h1>
+                Account <small>Your info</small>
+            </h1>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Control Panel - 
+            	<small>Manage and view account details and other information</small>
+            </div>
+            
+            <div class="panel-body">
+	            <div class="col-xs-6">
+		            <a href="/transactions" class="btn-block">
+		                <div class="panel panel-default">
+		                	<div class="panel-body">
+		                		Transactions
+		                	</div>
+		                </div>
+	                </a>
+	             </div>
+	             <div class="col-xs-6">
+	                <a href="/transfers" class="btn-block">
+		                <div class="panel panel-default">
+		                	<div class="panel-body">
+		                		Transfers
+		                	</div>
+		                </div>
+	                </a>
+	             </div>
+	             <div class="col-xs-6">
+	                <a href="/report" class="btn-block">
+		                <div class="panel panel-default">
+		                	<div class="panel-body">
+		                		Generate Report For This Month
+		                	</div>
+		                </div>
+	                </a>
+	             </div>
+            </div>
+            <div class="panel-body">
+	            <div class="col-xs-6">
+		            <a href="/portfolio" class="btn-block">
+		                <div class="panel panel-default">
+		                	<div class="panel-body">
+		                		Owned Shares
+		                	</div>
+		                </div>
+	                </a>
+	             </div>
+	             <div class="col-xs-6">
+		            <a href="/investment" class="btn-block">
+		                <div class="panel panel-default">
+		                	<div class="panel-body">
+		                		Individual Share Analysis
+		                	</div>
+		                </div>
+	                </a>
+	             </div>
+	             <div class="col-xs-6">
+		            <a href="/recommend" class="btn-block">
+		                <div class="panel panel-default">
+		                	<div class="panel-body">
+		                		Investment Environment
+		                	</div>
+		                </div>
+	                </a>
+	             </div>
+	             <div class="col-xs-6">
+		            <a href="/overview" class="btn-block">
+		                <div class="panel panel-default">
+		                	<div class="panel-body">
+		                		Dashboard
+		                	</div>
+		                </div>
+	                </a>
+	             </div>
+	           </div>
+        </div>
+        </div>
+    </div>
+ 
+    <div class="container">
+        <hr>
+        <% include footer %>
+    </div>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#account').addClass("active");
+        });
+    </script>
+</body>
+</html>

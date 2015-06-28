@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ebApp">
+<% include header %>
+<!-- <script language="javascript" type="text/javascript" src="../stylesheets/morris.css"></script> -->
+<script language="javascript" type="text/javascript" src="../js/plugins/morris/morris.js"></script>
+<script language="javascript" type="text/javascript" src="../js/plugins/morris/raphael.min.js"></script>
+<script language="javascript" type="text/javascript" src="../js/plugins/morris/morris-data.js"></script>
+<link href="stylesheets/sb-admin/sb-admin.css" rel="stylesheet">
+<link href="../stylesheets/morris.css" rel="stylesheet">
+<body>
+    <% include navbar %>
+    <div>
+	    <div class="jumbotron">
+	        <div class="container">
+	            <div class="page-header">
+		            <h1>
+		                Individual Share Analysis
+		            </h1>
+		        </div>
+		        <div class="panel panel-default">
+		            <div class="panel-heading">
+		            	<div class="dropdown">
+									  <div class="dropdown-toggle" id="dropdownMenu1" 
+									  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+									    Analysis for: Singtel
+									    <span class="caret"></span>
+									  </div>
+									  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+									    <li><a href="#">Singtel</a></li>
+									    <li><a href="#">Keppel Corporation</a></li>
+									    <li><a href="#">Noble</a></li>
+									    <li><a href="#">DBS</a></li>
+									    <li><a href="#">OCBC</a></li>
+									    <li><a href="#">Elite Industries</a></li>
+									  </ul>
+									</div>
+		            </div>
+		            <div class="panel-body">
+                  
+                  <div class="col-xs-12 text-center">
+							      <h3>Price Changes Today</h3>
+							      <div id="area-chart" style="min-height: 300px;"></div>
+							    </div>
+							    
+							    <div class="col-xs-12 text-center">
+							       <h3>Price Changes Since Last Year</h3>
+							      <div id="line-chart" style="min-height: 300px;"></div>
+							    </div>
+									
+								</div>
+		        </div>
+	        </div>
+	    </div>
+ 	</div>
+ 	
+    <div class="container">
+        <hr>
+        <% include footer %>
+    </div>
+    
+   <script>
+   var data = [
+               { y: '0200', a: 5.0, b: 9.0},
+               { y: '0400', a: 6.5,  b: 7.5},
+               { y: '0600', a: 5.0,  b: 5.0},
+               { y: '0800', a: 7.5,  b: 6.0},
+               { y: '1000', a: 8.0,  b: 6.5},
+               { y: '1200', a: 9.0,  b: 7.0},
+               { y: '1400', a: 10.0, b: 7.5},
+               { y: '1600', a: 11.5, b: 7.5},
+               { y: '1800', a: 12.0, b: 8.5},
+               { y: '2000', a: 14.5, b: 8.5},
+               { y: '2200', a: 16.0, b: 9.5}
+             ],
+             config = {
+               data: data,
+               xkey: 'y',
+               ykeys: ['a', 'b'],
+               labels: ['Cost', 'Price'],
+               fillOpacity: 0.6,
+               hideHover: 'auto',
+               behaveLikeLine: true,
+               resize: true,
+               pointFillColors:['#ffffff'],
+               pointStrokeColors: ['black'],
+               lineColors:['gray','red']
+           };
+         config.element = 'area-chart';
+         Morris.Area(config);
+         config.element = 'line-chart';
+         Morris.Line(config);
+         </script>
+   </body>
+</html>
